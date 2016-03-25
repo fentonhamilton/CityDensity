@@ -1,0 +1,57 @@
+﻿Cycle Data Update 3.0 
+
+Full API interface and files structuring 
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   .ipynb_checkpoints/API Interface-checkpoint.ipynb
+#	modified:   .ipynb_checkpoints/Time-Series Analysis of Station-checkpoint.ipynb
+#	deleted:    API Interface.ipynb
+#	deleted:    CycleData/01Nov15-14Nov15.csv
+#	deleted:    CycleData/04Oct15-17Oct15.csv
+#	deleted:    CycleData/06Sep15-19Sep15.csv
+#	deleted:    CycleData/08Aug15-22Aug15.csv
+#	deleted:    CycleData/1. Journey Data Extract 04Jan-31Jan 12.csv
+#	deleted:    CycleData/10. Journey Data Extract 21Aug-22 Aug12.csv
+#	deleted:    CycleData/11. Journey Data Extract 23Aug-25 Aug12.csv
+#	deleted:    CycleData/12. Journey Data Extract 26Aug-27 Aug12.csv
+#	deleted:    CycleData/13. Journey Data Extract 28Aug-29 Aug12.csv
+#	deleted:    CycleData/13Dec15-24Dec15.csv
+#	deleted:    CycleData/14. Journey Data Extract 30Aug-31 Aug12.csv
+#	deleted:    CycleData/15. Journey Data Extract 01Sep-30Sep12.csv
+#	deleted:    CycleData/15Nov15-27Nov15.csv
+#	deleted:    CycleData/16. Journey Data Extract 01Oct-31Oct12.csv
+#	deleted:    CycleData/17. Journey Data Extract 01Nov-30Nov12.csv
+#	deleted:    CycleData/18. Journey Data Extract 01Dec-31Dec12.csv
+#	deleted:    CycleData/18Oct15-31Oct15.csv
+#	deleted:    CycleData/2. Journey Data Extract_01Feb-29Feb 12.csv
+#	deleted:    CycleData/20Sep15-03Oct15.csv
+#	deleted:    CycleData/23Aug15-05Sep15.csv
+#	deleted:    CycleData/25Dec15-09Jan16.csv
+#	deleted:    CycleData/26Jul15-07Aug15.csv
+#	deleted:    CycleData/28Nov15-12Dec15.csv
+#	deleted:    CycleData/3. Journey Data Extract_01Mar-31Mar12.csv
+#	deleted:    CycleData/4. Journey Data Extract_1Apr-28Apr12.csv
+#	deleted:    CycleData/5. Journey Data Extract_29Apr-26May12.csv
+#	deleted:    CycleData/6. Journey Data Extract_27May-23Jun12.csv
+#	deleted:    CycleData/7. Journey Data Extract_24Jun-21Jul12.csv
+#	deleted:    CycleData/8. Journey Data Extract 22Jul-18Aug12.csv
+#	deleted:    CycleData/9. Journey Data Extract 19Aug-20 Aug12.csv
+#	deleted:    CycleData/cyclehireusagestats-2012.zip
+#	deleted:    Demonstration/cycledata.py
+#	modified:   Time-Series Analysis of Station.ipynb
+#	modified:   __pycache__/cycledata.cpython-34.pyc
+#	deleted:    cycledata.py
+#
+# Untracked files:
+#	CycleData/
+#	Demonstration/old_cycledata.py
+#	R/
+#	old_cycledata.py
+#
+
