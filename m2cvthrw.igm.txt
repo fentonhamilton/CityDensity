@@ -1,0 +1,103 @@
+﻿API CycleData Library with preprocessing and data exploration functions
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   .gitignore
+#	new file:   .ipynb_checkpoints/API Interface-checkpoint.ipynb
+#	new file:   .ipynb_checkpoints/Time-Series Analysis of Station-checkpoint.ipynb
+#	modified:   .ipynb_checkpoints/Untitled-checkpoint.ipynb
+#	modified:   .ipynb_checkpoints/Untitled2-checkpoint.ipynb
+#	new file:   AM_Peak.xls
+#	new file:   AM_Peak_Nodes.xls
+#	modified:   Bike_Stations.csv
+#	new file:   CycleData/.ipynb_checkpoints/API Interface-checkpoint.ipynb
+#	new file:   CycleData/.ipynb_checkpoints/Example of Library use-checkpoint.ipynb
+#	new file:   CycleData/.ipynb_checkpoints/Time-Series Analysis of Station-checkpoint.ipynb
+#	new file:   CycleData/0
+#	new file:   CycleData/14_November12_Difference.csv
+#	new file:   CycleData/2012DailyUse.csv
+#	new file:   CycleData/2014DailyCycleUseage.png
+#	new file:   CycleData/API Interface.ipynb
+#	new file:   CycleData/Bike_Stations.csv
+#	new file:   CycleData/Example of Library use.ipynb
+#	new file:   CycleData/FullTest.csv
+#	new file:   CycleData/Time-Series Analysis of Station.ipynb
+#	new file:   CycleData/__pycache__/cycledata.cpython-34.pyc
+#	new file:   CycleData/cycledata.py
+#	deleted:    Demonstration of CycleData.ipynb
+#	new file:   Demonstration/.ipynb_checkpoints/Demonstration of CycleData-checkpoint.ipynb
+#	new file:   Demonstration/Bike_Station_Distances.csv
+#	copied:     Bike_Stations.csv -> Demonstration/Bike_Stations.csv
+#	new file:   Demonstration/Demonstration of CycleData.ipynb
+#	new file:   Demonstration/FullTest.csv
+#	new file:   Demonstration/TEST.csv
+#	new file:   Demonstration/Tube/SatEntries.csv
+#	new file:   Demonstration/Tube/SatExits.csv
+#	new file:   Demonstration/Tube/SunEntries.csv
+#	new file:   Demonstration/Tube/SunExits.csv
+#	new file:   Demonstration/Tube/WkEntries.csv
+#	new file:   Demonstration/Tube/WkExits.csv
+#	new file:   Demonstration/__pycache__/cycledata.cpython-34.pyc
+#	renamed:    cycledata.py -> Demonstration/old_cycledata.py
+#	new file:   EdgesMetrix(eidxsid).csv
+#	new file:   EdgesMetrix.csv
+#	new file:   En 12Week.xls
+#	new file:   En12sat.xls
+#	new file:   En12sun.xls
+#	new file:   Ex 12Week.xls
+#	new file:   Ex12sat.xls
+#	new file:   Ex12sun.xls
+#	new file:   NovemberTransactions.csv
+#	new file:   NovemberWeekdayJourneys.csv
+#	new file:   R/.RData
+#	new file:   R/.Rhistory
+#	new file:   R/14_November12.csv
+#	new file:   R/14_November12_Difference.csv
+#	new file:   R/14_November12_Entries.csv
+#	new file:   R/DSHW_Plot.pdf
+#	new file:   R/ForecastDSHW.jpeg
+#	new file:   R/ForecastDSHW_diff.jpeg
+#	new file:   R/Plot.pdf
+#	new file:   R/WeeklyAnalysis.R
+#	new file:   R/fchange.Rhistory
+#	new file:   R/first.Rhistory
+#	new file:   Time-Series Analysis of Station.ipynb
+#	modified:   Untitled.ipynb
+#	modified:   Untitled2.ipynb
+#	modified:   __pycache__/cycledata.cpython-34.pyc
+#	new file:   __pycache__/tubedata.cpython-34.pyc
+#	new file:   fwjxn4pb.rx1.txt
+#	new file:   gexf/__init__.py
+#	new file:   gexf/__pycache__/__init__.cpython-34.pyc
+#	new file:   gexf/__pycache__/_gexf.cpython-34.pyc
+#	new file:   gexf/_gexf.py
+#	new file:   old_cycledata.py
+#	new file:   pygexf-master/.gitignore
+#	new file:   pygexf-master/COPYING
+#	new file:   pygexf-master/LICENSE
+#	new file:   pygexf-master/LICENSE.CECILL-C
+#	new file:   pygexf-master/LICENSE.LGPL
+#	new file:   pygexf-master/MANIFEST
+#	new file:   pygexf-master/README
+#	new file:   pygexf-master/VERSION
+#	new file:   pygexf-master/doc/conf.py
+#	new file:   pygexf-master/doc/developers.rst
+#	new file:   pygexf-master/doc/index.rst
+#	new file:   pygexf-master/doc/users.rst
+#	new file:   pygexf-master/gexf/__init__.py
+#	new file:   pygexf-master/gexf/_gexf.py
+#	new file:   pygexf-master/setup.py
+#	new file:   pygexf-master/test/exp.gexf
+#	new file:   pygexf-master/test/gexf.net.dynamics_openintervals.gexf
+#	new file:   pygexf-master/test/test.py
+#	new file:   pygexf-master/test/test_pygexf.py
+#	new file:   tubedata.py
+#
+# Untracked files:
+#	CycleData/Features/
+#	CycleData/RawData/
+#
+
