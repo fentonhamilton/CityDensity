@@ -20,11 +20,13 @@ import gc
 i_rng = pd.date_range('2015-01-01', '2015-01-01 23:45:00', freq='15min').time
 wd = str(os.getcwd())
 years = ['2012', '2013', '2014', '2015', '2016']
-filenames = ['FullYear.csv', 'Weekdays.csv', 'WeekEnds.csv', 'WeekDaily.csv', 'WeekEndDaily.csv']
+filenames = ['FullYear.csv', 'Weekdays.csv', 'WeekEnds.csv',
+             'WeekDaily.csv', 'WeekEndDaily.csv']
 station_range = range(1, 805)
 
 
 class Render(QWebPage):
+
     def __init__(self, url):
         self.app = QApplication(sys.argv)
         QWebPage.__init__(self)
@@ -38,7 +40,8 @@ class Render(QWebPage):
 
 
 class Model(object):
-    """Class for modelling a stations behaviour"""
+
+    """Class for modelling a station's behaviour"""
 
     def __init__(self, dataframe, station_id):
         super(Model, self).__init__()
@@ -53,7 +56,8 @@ class Model(object):
 
     def FilterStation(self, dataframe):
         row_index = (dataframe.s_id == self.ID) | (dataframe.e_id == self.ID)
-        StationFrame = dataframe.loc[row_index, ['e_date', 'e_id', 's_date', 's_id']]
+        StationFrame = dataframe.loc[row_index,
+                                     ['e_date', 'e_id', 's_date', 's_id']]
         if len(StationFrame) > 0:
             self.valid = True
         return StationFrame
@@ -120,7 +124,8 @@ def GetAddressBook():
     Jfile = resp.json()
     ab = []
     for i in Jfile:
-        ab.append({'long': i["lon"], 'lat': i["lat"], 'id': i["id"][11:], 'name': i["commonName"]})
+        ab.append({'long': i["lon"], 'lat': i["lat"], 'id': i["id"][11:],
+                   'name': i["commonName"]})
     addressbook = pd.DataFrame(ab)
     addressbook.id = addressbook.id.astype(int)
     addressbook.sort_values(by='id', axis=0, ascending=True, inplace=True)
@@ -129,8 +134,10 @@ def GetAddressBook():
     add = pd.DataFrame(index=pd.Series(range(1, max(addressbook.id) + 1)))
     DF = add.join(addressbook)
     missingStations = DF[DF.isnull().any(axis=1)].index
-    addressbook.to_csv(path_or_buf='Bike_Stations.csv', columns=['long', 'lat', 'id', 'name'], index=False)
-    pd.DataFrame(missingStations).to_csv(wd + '\\' + 'missing_stations.csv', index=False, header=False)
+    addressbook.to_csv(path_or_buf='Bike_Stations.csv',
+                       columns=['long', 'lat', 'id', 'name'], index=False)
+    pd.DataFrame(missingStations).to_csv(wd + '\\' + 'missing_stations.csv',
+                                         index=False, header=False)
     return addressbook, missingStations
 
 
@@ -146,12 +153,17 @@ def GetDistances(addressbook):
                 for j in station_range:
                     if i != j:
                         erow_index = addressbook['id'] == j
-                        end = addressbook.loc[erow_index, ['id', 'lat', 'long']]
+                        end = addressbook.loc[erow_index,
+                                              ['id', 'lat', 'long']]
                         if(len(end) > 0):
-                            delta_lat = (end.iloc[0, 1] - start.iloc[0, 1]) * math.pi / 180
-                            delta_long = (end.iloc[0, 2] - start.iloc[0, 2]) * math.pi / 180
-                            a = math.sin(delta_lat / 2)**2 + math.cos(start.lat * math.pi / 180) * math.cos(
-                                end.lat * math.pi / 180) * math.sin(delta_long / 2)**2
+                            delta_lat = math.pi * (end.iloc[0, 1] -
+                                                   start.iloc[0, 1]) / 180
+                            delta_long = math.pi * (end.iloc[0, 2] -
+                                                    start.iloc[0, 2]) / 180
+                            a = math.sin(delta_lat / 2)**2 + math.cos(
+                                start.lat * math.pi / 180) * math.cos(
+                                end.lat * math.pi / 180) * math.sin(
+                                delta_long / 2)**2
                             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
                             distances[j][i] = 6371000 * c
     distances.to_csv(wd + '\\' 'Bike_Station_Distances.csv')
@@ -170,7 +182,6 @@ def SeparateWeek(dataframe, index=False):
     if(index is False):
         Week.reset_index(inplace=True, drop=True)
         WeekEnd.reset_index(inplace=True, drop=True)
-    # print('Weekdays and Weekends separated')
     return Week, WeekEnd
 
 
@@ -278,13 +289,21 @@ def ReadFiles(directory):
         if(filename[-4:] == '.csv'):
             print("Reading: " + filename)
             try:
-                Dfile = pd.read_csv(filename, parse_dates=[1, 3], dayfirst=True, usecols=[1, 3, 4, 6, 7],
-                                    na_values=[0, 'Tabletop1'], names=['Duration', 'e_date', 'e_id', 's_date', 's_id'],
+                Dfile = pd.read_csv(filename, parse_dates=[1, 3],
+                                    dayfirst=True, usecols=[1, 3, 4, 6, 7],
+                                    na_values=[0, 'Tabletop1'],
+                                    names=['Duration', 'e_date',
+                                           'e_id', 's_date', 's_id'],
                                     header=None, skiprows=1,
-                                    dtype={'Duaration': np.float32, 's_id': np.float32, 'e_id': np.float32}).dropna()
+                                    dtype={'Duaration': np.float32,
+                                           's_id': np.float32,
+                                           'e_id': np.float32}).dropna()
             except:
-                Dfile = pd.read_csv(filename, parse_dates=[1, 3], dayfirst=True, usecols=[1, 3, 4, 6, 7],
-                                    na_values=[0, 'Tabletop1'], names=['Duration', 'e_date', 'e_id', 's_date', 's_id'],
+                Dfile = pd.read_csv(filename, parse_dates=[1, 3],
+                                    dayfirst=True, usecols=[1, 3, 4, 6, 7],
+                                    na_values=[0, 'Tabletop1'],
+                                    names=['Duration', 'e_date',
+                                           'e_id', 's_date', 's_id'],
                                     header=None, skiprows=1).dropna()
                 Dfile = Dfile.apply(pd.to_numeric, errors='coerce').dropna()
             DF = DF.append(Dfile)
@@ -397,22 +416,38 @@ def Import(type):
         if(os.path.exists(path)):
             if(type == 'daily'):
                 print('Reading: ' + year + 'WeekDaily.csv')
-                WDdaily[year] = pd.read_csv(path + '\\' + year + 'WeekDaily.csv', parse_dates=0, index_col=0,
+                WDdaily[year] = pd.read_csv(path + '\\' + year +
+                                            'WeekDaily.csv',
+                                            parse_dates=0, index_col=0,
                                             dtype={'Count': np.float32})
                 print('Reading: ' + year + 'WeekEndDaily.csv')
-                WEdaily[year] = pd.read_csv(path + '\\' + year + 'WeekEndDaily.csv', parse_dates=0, index_col=0,
+                WEdaily[year] = pd.read_csv(path + '\\' + year +
+                                            'WeekEndDaily.csv',
+                                            parse_dates=0, index_col=0,
                                             dtype={'Count': np.float32})
             elif(type == 'fullyear'):
                 print('Reading: ' + year + 'FullYear.csv')
-                FullYear[year] = pd.read_csv(path + '\\' + year + 'FullYear.csv', parse_dates=[2, 4], index_col=0,
-                                             dtype={'Duaration': np.float32, 's_id': np.float32, 'e_id': np.float32})
+                FullYear[year] = pd.read_csv(path + '\\' + year +
+                                             'FullYear.csv',
+                                             parse_dates=[2, 4], index_col=0,
+                                             dtype={'Duaration': np.float32,
+                                                    's_id': np.float32,
+                                                    'e_id': np.float32})
             elif(type == 'split'):
                 print('Reading: ' + year + 'Weekdays.csv')
-                Weekdays[year] = pd.read_csv(path + '\\' + year + 'Weekdays.csv', parse_dates=[2, 4], index_col=0,
-                                             dtype={'Duaration': np.float32, 's_id': np.float32, 'e_id': np.float32})
+                Weekdays[year] = pd.read_csv(path + '\\' + year +
+                                             'Weekdays.csv',
+                                             parse_dates=[2, 4], index_col=0,
+                                             dtype={'Duaration': np.float32,
+                                                    's_id': np.float32,
+                                                    'e_id': np.float32})
                 print('Reading: ' + year + 'WeekEnds.csv')
-                WeekEnds[year] = pd.read_csv(path + '\\' + year + 'WeekEnds.csv', parse_dates=[2, 4], index_col=0,
-                                             dtype={'Duaration': np.float32, 's_id': np.float32, 'e_id': np.float32})
+                WeekEnds[year] = pd.read_csv(path + '\\' + year +
+                                             'WeekEnds.csv',
+                                             parse_dates=[2, 4], index_col=0,
+                                             dtype={'Duaration': np.float32,
+                                                    's_id': np.float32,
+                                                    'e_id': np.float32})
             else:
                 continue
     if(type == 'daily'):
@@ -454,11 +489,11 @@ def Recent(WD, WE):
         i += 1
     while(int(WErecent[-j:(len(WErecent) - j + 1)].index.dayofweek) != 6):
         j += 1
-    # Take last 4 weeks
+    # Take last 2 weeks
     lastWD = int(WDrecent[-i:(len(WDrecent) - i + 1)].index.dayofyear)
     lastWE = int(WErecent[-j:(len(WErecent) - j + 1)].index.dayofyear)
-    firstWD = lastWD - 28
-    firstWE = lastWE - 28
+    firstWD = lastWD - 14
+    firstWE = lastWE - 14
     rowWD = (WDrecent.index.dayofyear > firstWD) & (
         WDrecent.index.dayofyear < (lastWD + 1))
     rowWE = (WErecent.index.dayofyear > firstWE) & (
@@ -559,7 +594,8 @@ def RunWDModel(recent):
         # R vector of strings
         from rpy2.robjects.vectors import StrVector
         # file
-        packnames_to_install = [x for x in packnames if not rpackages.isinstalled(x)]
+        packnames_to_install = [x for x in packnames
+                                if not rpackages.isinstalled(x)]
         if len(packnames_to_install) > 0:
             utils.install_packages(StrVector(packnames_to_install))
     # Import R packages
@@ -580,17 +616,22 @@ def RunWDModel(recent):
         if(len(SepModel.WD) > 0):
             if(x == 1):  # Only needs to be run once, same for all stations
                 WD_dates = SepModel.WD.index
-                new = pd.to_datetime((np.asarray(WD_dates[-1].year, dtype='datetime64[Y]')-1970)+(np.asarray((WD_dates[-1].dayofyear+jump), dtype='timedelta64[D]')-1))
-                new_dates = pd.DatetimeIndex(start=new, freq='30Min', periods=48*4)
+                y = np.asarray(WD_dates[-1].year,
+                               dtype='datetime64[Y]') - 1970
+                doy = np.asarray((WD_dates[-1].dayofyear + jump),
+                                 dtype='timedelta64[D]') - 1
+                new = pd.to_datetime(y + doy)
+                new_dates = pd.DatetimeIndex(start=new,
+                                             freq='30Min', periods=48 * 4)
             SepModel.WD.reset_index(inplace=True, drop=True)
             gc.collect()
-            robjects.r('order = c(2,0,3)')
+            robjects.r('o = c(2,0,3)')
             robjects.r('sorder = c(1,1,2)')
-            robjects.r('seasonal = list(order=sorder, period=48)')
+            robjects.r('s = list(order=sorder, period=48)')
             DF = pandas2ri.py2ri(SepModel.WD)
             robjects.r.assign('df', DF)
             try:
-                robjects.r('fit = Arima(df, order=order, seasonal=seasonal, method="CSS")')
+                robjects.r('fit = Arima(df,order=o, seasonal=s, method="CSS")')
             except:
                 errors.append(x)
                 continue
@@ -598,7 +639,8 @@ def RunWDModel(recent):
             arima_mean = np.array(f_cast.rx('mean'))
             robjects.r('rm(list = ls(all = TRUE))')
             robjects.r('gc()')
-            results = pd.DataFrame({'count_diff': arima_mean.flatten()}).round()
+            results = pd.DataFrame({'count_diff':
+                                    arima_mean.flatten()}).round()
             results.count_diff = results.count_diff.astype(int)
             results['DateTime'] = new_dates
             results['Type'] = 'Forecast'
@@ -617,7 +659,7 @@ def RunWDModel(recent):
     output.reset_index(inplace=True, drop=True)
     path = wd + '\Model'
     if not os.path.exists(path):
-                os.mkdir(path)
+        os.mkdir(path)
     output.to_csv(path + '\\' 'ModelOutput.csv')
     return output, absent, errors
 
@@ -639,10 +681,14 @@ if __name__ == '__main__':
     # Create DataFrame for full years
     FY, WD, WE = CreateYearFrames(updatedFolders)
     # Adjust any overlaps within the year frames
+    print('Adjusting files to account for overlaps in data')
     FY, WD, WE = AdjustOverlap(FY)
     # Create Daily Usage
+    print('Caculating Daily Usage Totals')
     WDdays, WEdays = YearsDaily(WD, WE)
     # Find most recent 2 weeks
-    recent = cd.RecentFull(FullYear)
+    print('Selecting most recent data')
+    recent = RecentFull(FullYear)
     # Run R Model (WARNING: long runtime)
+    print('Fitting Model and Forecasting')
     output = RunWDModel(recent)
